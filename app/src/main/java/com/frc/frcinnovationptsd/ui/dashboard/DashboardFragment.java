@@ -1,4 +1,4 @@
-package com.example.frcinnovationptsd.ui.dashboard;
+package com.frc.frcinnovationptsd.ui.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import com.example.frcinnovationptsd.R;
+import com.frc.frcinnovationptsd.R;
 
 public class DashboardFragment extends Fragment {
 
