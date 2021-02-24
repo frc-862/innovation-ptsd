@@ -1,4 +1,4 @@
-package com.example.frcinnovationptsd;
+package com.frc.frcinnovationptsd;
 
 import org.junit.Test;
 
