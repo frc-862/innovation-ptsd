@@ -16,6 +16,10 @@ import java.util.Map;
 public class FirebaseCloud {
     FirebaseFirestore database = FirebaseFirestore.getInstance();
 
+    /**
+     Adds the user to Firebase CloudStore along with their information.
+     @param userInfo A map of the information for the user
+     */
     public void addUsers(Map<String, String> userInfo){
         database.collection(Constants.FIREBASE_USERS_COLLECTION_NAME)
                 .add(userInfo)
@@ -27,6 +31,13 @@ public class FirebaseCloud {
                 });
     }
 
+
+    /**
+     Retrieves one field of user information from Firebase CloudStore.
+     @param username The name of the user
+     @param fieldName The name of the field to retrieve for the user
+     @return the value of the field requested
+     */
     public String getData(String username, String fieldName) {
         FirebaseSuccessListener<QuerySnapshot> listener = new FirebaseSuccessListener<QuerySnapshot>() {
             private String result;
