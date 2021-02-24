@@ -1,4 +1,4 @@
-package com.example.frcinnovationptsd;
+package com.frc.frcinnovationptsd;
 
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
