@@ -30,4 +30,10 @@ public class HomeFragment extends Fragment {
         });
         return root;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // register listeners
+    }
 }
