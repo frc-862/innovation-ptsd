@@ -20,7 +20,7 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseCloud database = new FirebaseCloud();
+    private FirebaseCloud database;
     Map<String, String> testUser = new HashMap<>();
 
     @Override
@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         testUser.put("name", "bob");
         testUser.put("heart", "32");
         testUser.put("pressure", "90");
+        database = new FirebaseCloud("bob");
+
         setContentView(com.frc.frcinnovationptsd.R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -39,8 +41,5 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-        //database.addUsers(testUser);
     }
-
 }
