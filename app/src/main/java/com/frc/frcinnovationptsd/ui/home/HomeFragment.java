@@ -14,7 +14,7 @@ import com.frc.frcinnovationptsd.R;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    public static HomeViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
