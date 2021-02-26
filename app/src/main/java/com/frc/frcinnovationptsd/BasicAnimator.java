@@ -1,103 +1,60 @@
 package com.frc.frcinnovationptsd;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.FloatEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
-import android.animation.ValueAnimator;
+import android.animation.TypeEvaluator;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+
+import java.util.List;
+import java.util.Map;
 
 public class BasicAnimator {
 
     /**
-     * Translate a view using coordinates.
-     * @param view The view to translate.
-     * @param deltaX Change in x position.
-     * @param deltaY Change in y position.
-     * @param duration Time of animation (ms)
-     * @param interpolatorX Interpolation type (default is LinearInterpolator)
-     * @param interpolatorY Interpolation type (default is LinearInterpolator)
-     */
-    public static void Move(View view, float deltaX, float deltaY, long duration, TimeInterpolator interpolatorX, TimeInterpolator interpolatorY) {
-        float currentX = view.getTranslationX();
-        float currentY = view.getTranslationY();
-        ValueAnimator animatorX = ValueAnimator.ofFloat(currentX, currentX + deltaX)
-                .setDuration(duration);
-
-        ValueAnimator animatorY = ValueAnimator.ofFloat(currentY, currentY + deltaY)
-                .setDuration(duration);
-
-
-        animatorX.setInterpolator(interpolatorX == null ? new LinearInterpolator() : interpolatorX);
-        animatorY.setInterpolator(interpolatorY == null ? new LinearInterpolator() : interpolatorY);
-
-        animatorX.addUpdateListener(animation -> view.setTranslationX((Float) animation.getAnimatedValue()));
-
-        animatorY.addUpdateListener(animation -> view.setTranslationY((Float) animation.getAnimatedValue()));
-
-        animatorX.start();
-        animatorY.start();
-    }
-
-    /**
-     * Changes the alpha value of a view.
+     * Create and play a single animation.
      * @param view The view to animate.
-     * @param fade Value of fade [0, 1] (0 = transparent, 1 = opaque)
-     * @param duration Time of animation (ms)
-     * @param interpolator Interpolation type (default is LinearInterpolator)
+     * @param propertyName The name of property in the view to animate.
+     * @param duration The length of animation (ms).
+     * @param evaluator How animation should change the type. (Default is FloatEvaluator)
+     * @param interpolator How animation should interpolate between values. (Default is LinearInterpolator)
+     * @param values The list of values to interpolate through.
+     * @param <T> The value's type.
+     * @return
      */
-    public static void FadeInOut(View view, float fade, long duration, TimeInterpolator interpolator) {
-        ValueAnimator animator = ValueAnimator.ofFloat(view.getAlpha(), fade)
-                .setDuration(duration);
-
+    public static<T> ObjectAnimator GetAnimator(View view, String propertyName, long duration, TypeEvaluator evaluator, TimeInterpolator interpolator, T... values){
+        if (evaluator == null)
+                evaluator = new FloatEvaluator();
+        ObjectAnimator animator = ObjectAnimator.ofObject(view, propertyName, evaluator, values);
+        animator.setDuration(duration);
         animator.setInterpolator(interpolator == null ? new LinearInterpolator() : interpolator);
-
-        animator.addUpdateListener(animation -> view.setAlpha((Float)animation.getAnimatedValue()));
-
-        animator.start();
+        return animator;
     }
 
     /**
-     * Rotate view about its anchor.
-     * @param view The view to animate.
-     * @param deltaDegrees The degrees to rotate the view.
-     * @param duration Time of animation (ms)
-     * @param interpolator Interpolation type (default is LinearInterpolator)
+     * Animate through a list of ObjectAnimators one at a time.
+     * @param animators A list of Animators to animate through.
      */
-    public static void Rotate(View view, float deltaDegrees, long duration, TimeInterpolator interpolator) {
-        float currentRotation = view.getRotation();
-        ValueAnimator animator = ValueAnimator.ofFloat(currentRotation, currentRotation + deltaDegrees)
-                .setDuration(duration);
+    public static AnimatorSet AnimateMultipleSequential(Animator... animators){
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playSequentially(animators);
 
-        animator.setInterpolator(interpolator == null ? new LinearInterpolator() : interpolator);
-
-        animator.addUpdateListener(animation -> view.setRotation((Float)animation.getAnimatedValue()));
-
-        animator.start();
+        animatorSet.start();
+        return animatorSet;
     }
 
     /**
-     * Change view size about its anchor.
-     * @param view The view to animate.
-     * @param scaleX The desired x scale [0, infinity] (1 = no change)
-     * @param scaleY The desired y scale [0, infinity] (1 = no change)
-     * @param duration Time of animation (ms)
-     * @param interpolatorX Interpolation type for x scaling (default is LinearInterpolator)
-     * @param interpolatorY Interpolation type for y scaling (default is LinearInterpolator)
+     * Animate through a list of ObjectAnimators all together.
+     * @param animators A list of animators to animate through.
      */
-    public static void Scale(View view, float scaleX, float scaleY, long duration, TimeInterpolator interpolatorX, TimeInterpolator interpolatorY) {
-        ValueAnimator animatorX = ValueAnimator.ofFloat(view.getAlpha(), scaleX)
-                .setDuration(duration);
-        ValueAnimator animatorY = ValueAnimator.ofFloat(view.getAlpha(), scaleY)
-                .setDuration(duration);
+    public static AnimatorSet AnimateMultipleParallel(Animator... animators){
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(animators);
 
-        animatorX.setInterpolator(interpolatorX == null ? new LinearInterpolator() : interpolatorX);
-        animatorY.setInterpolator(interpolatorY == null ? new LinearInterpolator() : interpolatorY);
-
-        animatorX.addUpdateListener(animation -> view.setScaleX((Float)animation.getAnimatedValue()));
-
-        animatorY.addUpdateListener(animation -> view.setScaleY((Float)animation.getAnimatedValue()));
-
-        animatorX.start();
-        animatorY.start();
+        animatorSet.start();
+        return animatorSet;
     }
 }
