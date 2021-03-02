@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,13 +23,14 @@ public class NotificationsFragment extends Fragment {
         notificationsViewModel =
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        final ProgressBar progressBar = root.findViewById(R.id.notification_progress_bar);
+
+        notificationsViewModel.getProgress().observe(getViewLifecycleOwner(), t -> progressBar.setProgress(t));
+
+        final Button button = root.findViewById(R.id.notification_button);
+        button.setOnClickListener(b -> notificationsViewModel.setProgress(progressBar.getProgress() + 5));
+
         return root;
     }
 
