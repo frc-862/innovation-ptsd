@@ -31,34 +31,35 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center_horizontal"
-        android:text="2"
+        android:text="10"
         android:textColor="@color/black"
         android:textSize="100sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintHorizontal_bias="0.239"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heart_rate_home_text" />
+        app:layout_constraintTop_toBottomOf="@+id/decibel_device_name_home"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/decibel_home"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:gravity="center_horizontal"
         android:text="Decibels"
         android:textAllCaps="false"
         android:textColor="@android:color/darker_gray"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/decibel_home_text" />
 
@@ -68,46 +69,76 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center_horizontal"
-        android:text="1"
+        android:text="10"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="100sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintHorizontal_bias="0.239"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.120000005" />
+        app:layout_constraintTop_toBottomOf="@+id/heart_rate_device_name_home"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/bpm_home"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:gravity="center_horizontal"
         android:text="BPM"
         android:textAllCaps="false"
         android:textColor="@android:color/darker_gray"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heart_rate_home_text" />
+
+    <TextView
+        android:id="@+id/heart_rate_device_name_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="InnovaTek Earpiece"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_home" />
+
+    <TextView
+        android:id="@+id/decibel_device_name_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="64dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Lightning Heart Rate Monitor"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bpm_home" />
 
     <Button
         android:id="@+id/testButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="532dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginLeft="168dp"
+        android:layout_marginTop="580dp"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -117,8 +148,8 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:progress="50"
         android:rotation="270"
         android:rotationX="0"
@@ -127,32 +158,43 @@
         android:scaleY="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/heart_rate_home_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19999999" />
+        app:layout_constraintTop_toBottomOf="@+id/heart_rate_device_name_home"
+        app:layout_constraintVertical_bias="0.17000002" />
 
     <ProgressBar
         android:id="@+id/decibel_progress_home"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:progress="50"
         android:rotation="270"
         android:rotationX="0"
         android:rotationY="0"
         android:scaleX="3"
         android:scaleY="5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/decibel_home_text"
-        app:layout_constraintTop_toBottomOf="@+id/heart_rate_home_text" />
+        app:layout_constraintTop_toBottomOf="@+id/decibel_device_name_home"
+        app:layout_constraintVertical_bias="0.3" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/heart_rate_status_home"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_state_safe_24dp"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="94dp" />
+        app:layout_constraintEnd_toStartOf="@+id/heart_rate_home_text"
+        app:layout_constraintTop_toBottomOf="@+id/heart_rate_device_name_home" />
+
+    <ImageView
+        android:id="@+id/decibel_status_home"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_state_warning_24dp"
+        app:layout_constraintEnd_toStartOf="@+id/decibel_home_text"
+        app:layout_constraintTop_toBottomOf="@+id/decibel_device_name_home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
