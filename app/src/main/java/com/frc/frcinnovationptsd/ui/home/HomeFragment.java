@@ -50,6 +50,7 @@ public class HomeFragment extends Fragment {
                                                     new IntEvaluator(), null, heartRateBar.getProgress(), i).start();
                     });
 
+
         Button button = root.findViewById(R.id.testButton);
         button.setOnClickListener(b -> {homeViewModel.setDecibel(homeViewModel.getDecibel().getValue() + 10);
                                         homeViewModel.setHeartRate(homeViewModel.getHeartRate().getValue() + 10);});
