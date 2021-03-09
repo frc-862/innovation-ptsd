@@ -1,11 +1,6 @@
 package com.frc.frcinnovationptsd.ui.home;
 
-import android.animation.FloatEvaluator;
 import android.animation.IntEvaluator;
-import android.graphics.BlendModeColorFilter;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +9,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.frc.frcinnovationptsd.BasicAnimator;
@@ -51,7 +44,7 @@ public class HomeFragment extends Fragment {
                     });
 
 
-        Button button = root.findViewById(R.id.testButton);
+        Button button = root.findViewById(R.id.therapy_home);
         button.setOnClickListener(b -> {homeViewModel.setDecibel(homeViewModel.getDecibel().getValue() + 10);
                                         homeViewModel.setHeartRate(homeViewModel.getHeartRate().getValue() + 10);});
         return root;
