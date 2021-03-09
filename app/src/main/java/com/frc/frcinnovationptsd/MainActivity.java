@@ -5,6 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -35,6 +41,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
+        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.coping, null);
+        Button button = findViewById(R.id.exit_coping_heart_rate);
+        PopupWindow popupWindow = new PopupWindow(this);
+        popupWindow.setHeight(1500);
+        popupWindow.setWidth(800);
+        button.setOnClickListener(i ->
+        {
+            TextView tv = (findViewById(R.id.text_home));
+            tv.setText("reee");
+            popupWindow.showAtLocation(view, Gravity.CENTER, 10, 10);
+        });
+        popupWindow.setContentView(view);
         // register view listeners
         Log.println(Log.ASSERT,"x DP checker: ",
                 "check " + getResources().getDisplayMetrics().widthPixels / getResources().getDisplayMetrics().density );
