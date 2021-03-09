@@ -4,6 +4,8 @@ import android.animation.FloatEvaluator;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import com.frc.frcinnovationptsd.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.Gravity;
@@ -20,12 +22,25 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseCloud database;
+    Map<String, String> testUser = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        testUser.put("name", "bob");
+        testUser.put("heart", "32");
+        testUser.put("pressure", "90");
+        database = new FirebaseCloud("bob");
+
+        setContentView(com.frc.frcinnovationptsd.R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
