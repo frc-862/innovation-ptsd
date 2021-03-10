@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import com.frc.frcinnovationptsd.R;
+import com.frc.frcinnovationptsd.ui.home.HomeViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -22,6 +23,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -35,6 +37,8 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseCloud database;
+    private HomeViewModel homeViewModel;
+
     Map<String, String> testUser = new HashMap<>();
 
     @Override
@@ -44,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         testUser.put("heart", "32");
         testUser.put("pressure", "90");
         database = new FirebaseCloud("bob");
+
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         setContentView(com.frc.frcinnovationptsd.R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -60,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-/*
+
         LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.coping_heart_rate, null);
         Button button = findViewById(R.id.coping_home);
@@ -72,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         {
             popupWindow.showAsDropDown(view);
         });
-        popupWindow.setContentView(view);*/
+        popupWindow.setContentView(view);
 
         final View welcomeText = findViewById(R.id.text_home);
         BasicAnimator.AnimateMultipleParallel(
@@ -82,12 +88,19 @@ public class MainActivity extends AppCompatActivity {
                         new FloatEvaluator(), new DecelerateInterpolator(), -250, 0)
         );
 
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        NotificationCompat.Builder decibelNotification = new NotificationCompat.Builder(this)
+                .setContentTitle("High Decibel Warning")
+                .setSmallIcon(R.drawable.ic_state_warning_24dp)
+                .setChannelId("1")
+                .setContentText("");
+
         NotificationCompat.Builder heartRateNotification = new NotificationCompat.Builder(this)
                 .setContentTitle("High Heart Rate Warning")
                 .setSmallIcon(R.drawable.ic_state_warning_24dp)
                 .setChannelId("1")
                 .setContentText("View the coping page to help lowering your heart rate.");
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel notificationChannel = new NotificationChannel(
@@ -97,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(notificationChannel);
         }
 
-        notificationManager.notify(1, heartRateNotification.build());
+        homeViewModel.setDeviceEventListener(
+                () -> notificationManager.notify(0, decibelNotification.build()),
+                () -> notificationManager.notify(1, heartRateNotification.build())
+        );
+
     }
 }

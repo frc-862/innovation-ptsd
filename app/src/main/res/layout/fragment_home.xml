@@ -95,9 +95,9 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias=".44"
+        app:layout_constraintHorizontal_bias="0.442"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/decibel_home_text" />
+        app:layout_constraintTop_toTopOf="@+id/heart_rate_home_text" />
 
     <TextView
         android:id="@+id/heart_rate_home_text"
@@ -137,7 +137,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.442"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/heart_rate_home_text" />
+        app:layout_constraintTop_toTopOf="@+id/decibel_home_text" />
 
     <TextView
         android:id="@+id/heart_rate_device_name_home"
@@ -275,8 +275,8 @@
         android:id="@+id/decibel_status_home"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        app:srcCompat="@drawable/ic_state_warning_24dp"
         app:layout_constraintEnd_toStartOf="@+id/decibel_home_text"
-        app:layout_constraintTop_toTopOf="@+id/decibel_home_text" />
+        app:layout_constraintTop_toTopOf="@+id/decibel_home_text"
+        app:srcCompat="@drawable/ic_state_safe_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

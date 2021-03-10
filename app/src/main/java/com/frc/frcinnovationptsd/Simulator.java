@@ -16,8 +16,8 @@ public class Simulator {
         runnable = new Runnable () {
             @Override
             public void run(){
-                int decibelRandom = (int)(Math.random() * 10 + Math.random() * -10);
-                int heartRateRandom = (int)(Math.random() * 10 + Math.random() * -10);
+                int decibelRandom = (int)(Math.random() * 20 + Math.random() * -10);
+                int heartRateRandom = (int)(Math.random() * 20 + Math.random() * -10);
                 viewModel.setDecibel(viewModel.getDecibel().getValue() + decibelRandom);
                 viewModel.setHeartRate(viewModel.getHeartRate().getValue() + heartRateRandom);
 
