@@ -1,8 +1,12 @@
 package com.frc.frcinnovationptsd;
 
 import android.animation.FloatEvaluator;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import com.frc.frcinnovationptsd.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -17,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -76,5 +81,22 @@ public class MainActivity extends AppCompatActivity {
                 BasicAnimator.GetAnimator(welcomeText, "translationY", 3000,
                         new FloatEvaluator(), new DecelerateInterpolator(), -250, 0)
         );
+
+        NotificationCompat.Builder heartRateNotification = new NotificationCompat.Builder(this)
+                .setContentTitle("High Heart Rate Warning")
+                .setSmallIcon(R.drawable.ic_state_warning_24dp)
+                .setChannelId("1")
+                .setContentText("View the coping page to help lowering your heart rate.");
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel notificationChannel = new NotificationChannel(
+                    Constants.DEFAULT_NOTIFICATION_CHANNEL_ID, Constants.DEFAULT_NOTIFICATION_CHANNEL_NAME,NotificationManager.IMPORTANCE_DEFAULT);
+            notificationChannel.enableVibration(true);
+            notificationChannel.enableLights(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+
+        notificationManager.notify(1, heartRateNotification.build());
     }
 }

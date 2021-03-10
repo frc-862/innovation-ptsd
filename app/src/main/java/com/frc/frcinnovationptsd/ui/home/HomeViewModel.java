@@ -12,15 +12,19 @@ public class HomeViewModel extends ViewModel {
     public HomeViewModel() {
         decibel = new MutableLiveData<>();
         heartRate = new MutableLiveData<>();
-        decibel.setValue(0);
-        heartRate.setValue(0);
+        decibel.setValue(50);
+        heartRate.setValue(50);
+
     }
 
     public LiveData<Integer> getDecibel() {
         return decibel;
     }
 
-    public void setDecibel(Integer currentDecibel){
+    public void setDecibel(Integer currentDecibel)
+    {
+        if(currentDecibel < 0 || currentDecibel > 100)
+            return;
         decibel.setValue(currentDecibel);
     }
 
@@ -29,6 +33,8 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void setHeartRate(Integer currentHeartRate){
+        if(currentHeartRate < 0 || currentHeartRate > 100)
+            return;
         heartRate.setValue(currentHeartRate);
     }
 

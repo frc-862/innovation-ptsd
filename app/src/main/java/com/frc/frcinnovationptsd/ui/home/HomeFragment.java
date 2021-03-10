@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.frc.frcinnovationptsd.BasicAnimator;
 import com.frc.frcinnovationptsd.R;
+import com.frc.frcinnovationptsd.Simulator;
 
 public class HomeFragment extends Fragment {
 
@@ -24,6 +25,9 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        Simulator simulator = new Simulator(homeViewModel);
+        simulator.simulate();
 
         final TextView decibelText = root.findViewById(R.id.decibel_home_text);
         final TextView heartRateText = root.findViewById(R.id.heart_rate_home_text);
