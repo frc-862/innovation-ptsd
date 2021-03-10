@@ -3,22 +3,19 @@ package com.frc.frcinnovationptsd;
 import android.animation.FloatEvaluator;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import com.frc.frcinnovationptsd.R;
+
 import com.frc.frcinnovationptsd.ui.home.HomeViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.PopupWindow;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,10 +26,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,22 +59,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.coping_heart_rate, null);
-        Button button = findViewById(R.id.coping_home);
-        PopupWindow popupWindow = new PopupWindow(this);
-        popupWindow.setHeight(1200);
-        popupWindow.setWidth(1000);
-        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.GRAY));
-        button.setOnClickListener(i ->
-        {
-            popupWindow.showAsDropDown(view);
-        });
-        popupWindow.setContentView(view);
+        DisplayMetrics displaySize = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaySize);
+        int height = displaySize.heightPixels;
+        int width = displaySize.widthPixels;
 
+        // pop up window
+        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+        View copingView = inflater.inflate(R.layout.coping_heart_rate, null);
+
+        PopupWindow popupWindow = new PopupWindow(this);
+        popupWindow.setHeight(height);
+        popupWindow.setWidth(width);
+        popupWindow.setContentView(copingView);
+
+        final Button copingButton = findViewById(R.id.coping_home);
+        final Button exitCopingButton = copingView.findViewById(R.id.exit_coping);
+        exitCopingButton.setOnClickListener(i -> popupWindow.dismiss());
+        copingButton.setOnClickListener(i -> {
+            popupWindow.showAtLocation(copingView, Gravity.CENTER, 0, 0);
+        });
         final View welcomeText = findViewById(R.id.text_home);
         BasicAnimator.AnimateMultipleParallel(
                 BasicAnimator.GetAnimator(welcomeText, "alpha", 3000,
@@ -87,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 BasicAnimator.GetAnimator(welcomeText, "translationY", 3000,
                         new FloatEvaluator(), new DecelerateInterpolator(), -250, 0)
         );
+        // [end] pop up window
 
+        // notification
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         NotificationCompat.Builder decibelNotification = new NotificationCompat.Builder(this)
@@ -114,6 +124,6 @@ public class MainActivity extends AppCompatActivity {
                 () -> notificationManager.notify(0, decibelNotification.build()),
                 () -> notificationManager.notify(1, heartRateNotification.build())
         );
-
+        //[end] notification
     }
 }

@@ -24,8 +24,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_home"
-        app:srcCompat="@drawable/ic_rounded_rect_green_24dp"
-        tools:srcCompat="@drawable/ic_rounded_rect_green_24dp" />
+        app:srcCompat="@drawable/ic_rounded_rect_24dp"
+        tools:srcCompat="@drawable/ic_rounded_rect_24dp" />
 
     <ImageView
         android:id="@+id/earpiece_background_home"
@@ -37,7 +37,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/ic_rounded_rect_green_24dp"
+        app:srcCompat="@drawable/ic_rounded_rect_24dp"
         android:tint="#C617D3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
