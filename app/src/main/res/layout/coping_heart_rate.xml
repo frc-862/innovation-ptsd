@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coping_page"
+    android:id="@+id/therapy_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#006A5D5D">
@@ -34,7 +34,7 @@
         app:srcCompat="@drawable/ic_rounded_rect_24dp" />
 
     <TextView
-        android:id="@+id/title_heart_rate_coping"
+        android:id="@+id/title_therapy"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
@@ -59,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_heart_rate_coping" />
+        app:layout_constraintTop_toBottomOf="@+id/title_therapy" />
 
     <TextView
         android:id="@+id/textView5"

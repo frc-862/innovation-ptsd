@@ -76,18 +76,31 @@ public class MainActivity extends AppCompatActivity {
         // pop up window
         LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
         View copingView = inflater.inflate(R.layout.coping_heart_rate, null);
+        View therapyView = inflater.inflate(R.layout.therapy, null);
 
-        PopupWindow popupWindow = new PopupWindow(this);
-        popupWindow.setHeight(height);
-        popupWindow.setWidth(width);
-        popupWindow.setContentView(copingView);
+        PopupWindow copingPopupWindow = new PopupWindow(this);
+        PopupWindow therapyPopupWindow = new PopupWindow(this);
+
+        copingPopupWindow.setHeight(height);
+        copingPopupWindow.setWidth(width);
+        therapyPopupWindow.setHeight(height);
+        therapyPopupWindow.setWidth(width);
+        copingPopupWindow.setContentView(copingView);
+        therapyPopupWindow.setContentView(therapyView);
 
         final Button copingButton = findViewById(R.id.coping_home);
         final Button exitCopingButton = copingView.findViewById(R.id.exit_coping);
-        exitCopingButton.setOnClickListener(i -> popupWindow.dismiss());
-        copingButton.setOnClickListener(i -> {
-            popupWindow.showAtLocation(copingView, Gravity.CENTER, 0, 0);
-        });
+        final Button therapyButton = findViewById(R.id.therapy_home);
+        final Button exitTherapyButton = therapyView.findViewById(R.id.exit_therapy);
+
+        exitCopingButton.setOnClickListener(i -> copingPopupWindow.dismiss());
+        exitTherapyButton.setOnClickListener(i -> therapyPopupWindow.dismiss());
+
+        copingButton.setOnClickListener(i -> copingPopupWindow.showAtLocation(copingView, Gravity.CENTER, 0, 0));
+        therapyButton.setOnClickListener(i -> therapyPopupWindow.showAtLocation(therapyView, Gravity.CENTER, 0,0));
+        // [end] pop up window
+
+        // title animation
         final View welcomeText = findViewById(R.id.text_home);
         BasicAnimator.AnimateMultipleParallel(
                 BasicAnimator.GetAnimator(welcomeText, "alpha", 3000,
@@ -95,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 BasicAnimator.GetAnimator(welcomeText, "translationY", 3000,
                         new FloatEvaluator(), new DecelerateInterpolator(), -250, 0)
         );
-        // [end] pop up window
+        // [end] title animation
 
         // notification
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
