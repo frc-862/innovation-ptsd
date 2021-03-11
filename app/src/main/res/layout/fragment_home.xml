@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:rotation="0"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.HomeFragment">
 
 
     <ImageView
@@ -66,7 +66,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:fontFamily="sans-serif-black"
@@ -78,7 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.239"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/decibel_device_name_home"
+        app:layout_constraintTop_toBottomOf="@+id/heart_rate_device_name_home"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -90,7 +89,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:text="Decibels"
+        android:text="BPM"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
         android:textSize="24sp"
@@ -105,7 +104,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:fontFamily="sans-serif-black"
@@ -118,7 +116,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.239"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heart_rate_device_name_home"
+        app:layout_constraintTop_toBottomOf="@+id/decibel_device_name_home"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -130,7 +128,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:text="BPM"
+        android:text="Decibels"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
         android:textSize="24sp"
@@ -242,7 +240,7 @@
         android:scaleY="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/heart_rate_background_home"
-        app:layout_constraintTop_toBottomOf="@+id/heart_rate_device_name_home"
+        app:layout_constraintTop_toTopOf="@+id/heart_rate_home_text"
         app:layout_constraintVertical_bias="0.100000024" />
 
     <ProgressBar
@@ -261,7 +259,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/earpiece_background_home"
         app:layout_constraintTop_toTopOf="@+id/decibel_home_text"
-        app:layout_constraintVertical_bias=".12" />
+        app:layout_constraintVertical_bias=".1" />
 
     <ImageView
         android:id="@+id/heart_rate_status_home"

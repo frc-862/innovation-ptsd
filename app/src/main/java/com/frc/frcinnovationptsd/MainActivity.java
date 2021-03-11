@@ -6,7 +6,7 @@ import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.frc.frcinnovationptsd.ui.home.HomeViewModel;
+import com.frc.frcinnovationptsd.ui.HomeViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.util.DisplayMetrics;

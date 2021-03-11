@@ -1,4 +1,4 @@
-package com.frc.frcinnovationptsd.ui.home;
+package com.frc.frcinnovationptsd.ui;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

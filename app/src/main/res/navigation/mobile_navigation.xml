@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.frc.frcinnovationptsd.ui.dashboard.DashboardFragment"
+        android:name="com.frc.frcinnovationptsd.ui.HeartMonitorFragment"
         android:label="Heart Rate"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/heart_monitor" />
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.frc.frcinnovationptsd.ui.home.HomeFragment"
+        android:name="com.frc.frcinnovationptsd.ui.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.frc.frcinnovationptsd.ui.notifications.NotificationsFragment"
+        android:name="com.frc.frcinnovationptsd.ui.EarPieceFragment"
         android:label="Audio Monitoring"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/ear_piece" />
 </navigation>

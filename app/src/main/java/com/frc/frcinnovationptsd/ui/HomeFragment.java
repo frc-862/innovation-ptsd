@@ -1,9 +1,7 @@
-package com.frc.frcinnovationptsd.ui.home;
+package com.frc.frcinnovationptsd.ui;
 
 import android.animation.IntEvaluator;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +21,7 @@ public class HomeFragment extends Fragment {
 
     public static HomeViewModel homeViewModel;
 
+    private Simulator simulator;
     private boolean isDecibelWarned, isHeartRateWarned;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -31,7 +30,7 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        Simulator simulator = new Simulator(homeViewModel);
+        simulator = new Simulator(homeViewModel);
         simulator.simulate();
 
         final TextView decibelText = root.findViewById(R.id.decibel_home_text);
@@ -64,7 +63,7 @@ public class HomeFragment extends Fragment {
                         if(homeViewModel.isHeartRateHigh() && !isHeartRateWarned){
                             heartRateState.setImageResource(R.drawable.ic_state_warning_24dp);
                             isHeartRateWarned = true;
-                        } else if(!homeViewModel.isHeartRateHigh() && isDecibelWarned){
+                        } else if(!homeViewModel.isHeartRateHigh() && isHeartRateWarned){
                             heartRateState.setImageResource(R.drawable.ic_state_safe_24dp);
                             isHeartRateWarned = false;
                         }
@@ -82,4 +81,5 @@ public class HomeFragment extends Fragment {
         super.onStart();
         // register listeners
     }
+
 }

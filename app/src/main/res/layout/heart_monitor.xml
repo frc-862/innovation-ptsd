@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment" >
+    tools:context=".ui.HeartMonitorFragment" >
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView"
@@ -21,10 +21,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/rate_hr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="168dp"
+        android:layout_marginRight="168dp"
         android:layout_marginBottom="428dp"
         android:text="75"
         android:textColor="#DD0808"
@@ -33,7 +34,6 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -48,6 +48,7 @@
         android:layout_width="12dp"
         android:layout_height="13dp"
         android:layout_marginStart="336dp"
+        android:layout_marginLeft="336dp"
         android:layout_marginTop="180dp"
         android:src="@drawable/red_doooot"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,18 +61,30 @@
         android:layout_marginBottom="24dp"
         android:text="BPM"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="@+id/textView2" />
+        app:layout_constraintBottom_toBottomOf="@+id/rate_hr"
+        app:layout_constraintEnd_toEndOf="@+id/rate_hr" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:layout_marginTop="176dp"
         android:text="Live"
         android:textColor="#FF0101"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/gifImageView" />
+
+    <ImageView
+        android:id="@+id/state_hr"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginRight="156dp"
+        android:src="@drawable/ic_state_safe_24dp"
+        app:layout_constraintEnd_toEndOf="@+id/rate_hr"
+        app:layout_constraintTop_toTopOf="@+id/rate_hr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

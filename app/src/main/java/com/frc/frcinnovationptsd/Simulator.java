@@ -1,13 +1,12 @@
 package com.frc.frcinnovationptsd;
 
 import android.os.Handler;
-import android.util.Log;
 
-import androidx.lifecycle.ViewModel;
-
-import com.frc.frcinnovationptsd.ui.home.HomeViewModel;
+import com.frc.frcinnovationptsd.ui.HomeViewModel;
 
 public class Simulator {
+    private static boolean instantiated;
+
     Handler handler;
     Runnable runnable;
 
@@ -16,18 +15,19 @@ public class Simulator {
         runnable = new Runnable () {
             @Override
             public void run(){
-                int decibelRandom = (int)(Math.random() * 20 + Math.random() * -0);
-                int heartRateRandom = (int)(Math.random() * 20 + Math.random() * -0);
+                int decibelRandom = (int)(Math.random() * 10 + Math.random() * -10);
+                int heartRateRandom = (int)(Math.random() * 10 + Math.random() * -10);
                 viewModel.setDecibel(viewModel.getDecibel().getValue() + decibelRandom);
                 viewModel.setHeartRate(viewModel.getHeartRate().getValue() + heartRateRandom);
                 handler.postDelayed(this, 1000);
             }
         };
-
-        handler.post(runnable);
     }
 
     public void simulate(){
-
+        if(!instantiated){
+            handler.post(runnable);
+            instantiated = true;
+        }
     }
 }
