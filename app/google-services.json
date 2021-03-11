@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "818267218554",
+    "project_id": "frc-ptsd",
+    "storage_bucket": "frc-ptsd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818267218554:android:b8760cd2701d4952f2d1c3",
+        "android_client_info": {
+          "package_name": "com.frc.frcinnovationptsd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818267218554-ahu69d8pcv8vkk0fu5p4m1stfb999bf8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpbojD7sSv_52w77Y8uRWuHxw-aDYtQE4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818267218554-ahu69d8pcv8vkk0fu5p4m1stfb999bf8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
