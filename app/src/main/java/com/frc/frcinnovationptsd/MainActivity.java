@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.ViewModelProvider;
@@ -56,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setIcon(R.mipmap.ic_logo_foreground);
+        actionBar.setTitle("PaxZana");
     }
 
     @Override
@@ -135,7 +140,10 @@ public class MainActivity extends AppCompatActivity {
 
         homeViewModel.setDeviceEventListener(
                 () -> notificationManager.notify(0, decibelNotification.build()),
-                () -> notificationManager.notify(1, heartRateNotification.build())
+                () -> {
+                    notificationManager.notify(1, heartRateNotification.build());
+                    copingPopupWindow.showAtLocation(copingView, Gravity.CENTER, 0,0);
+                }
         );
         //[end] notification
     }

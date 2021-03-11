@@ -11,17 +11,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.frc.frcinnovationptsd.R;
+import com.frc.frcinnovationptsd.ui.home.HomeViewModel;
 
 public class DashboardFragment extends Fragment {
 
-    public static DashboardViewModel dashboardViewModel;
+    public static HomeViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        viewModel =
+                new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        //final TextView textView = root.findViewById(R.id.text_dashboard);
 
         return root;
     }

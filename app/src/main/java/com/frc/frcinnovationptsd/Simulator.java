@@ -16,13 +16,11 @@ public class Simulator {
         runnable = new Runnable () {
             @Override
             public void run(){
-                int decibelRandom = (int)(Math.random() * 20 + Math.random() * -10);
-                int heartRateRandom = (int)(Math.random() * 20 + Math.random() * -10);
+                int decibelRandom = (int)(Math.random() * 20 + Math.random() * -0);
+                int heartRateRandom = (int)(Math.random() * 20 + Math.random() * -0);
                 viewModel.setDecibel(viewModel.getDecibel().getValue() + decibelRandom);
                 viewModel.setHeartRate(viewModel.getHeartRate().getValue() + heartRateRandom);
-
-                Log.println(Log.ASSERT, "Runnable", "ran");
-                handler.postDelayed(this, 2000);
+                handler.postDelayed(this, 1000);
             }
         };
 
@@ -30,6 +28,6 @@ public class Simulator {
     }
 
     public void simulate(){
-        runnable.run();
+
     }
 }

@@ -11,23 +11,18 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.frc.frcinnovationptsd.R;
+import com.frc.frcinnovationptsd.ui.home.HomeViewModel;
 
 public class NotificationsFragment extends Fragment {
 
-    public static NotificationsViewModel notificationsViewModel;
+    public static HomeViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        viewModel =
+                new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        //final TextView textView = root.findViewById(R.id.textnotifications);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                //textView.setText(s);
-            }
-        });
+
         return root;
     }
 
