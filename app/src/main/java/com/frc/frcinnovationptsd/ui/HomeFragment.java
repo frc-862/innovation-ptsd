@@ -21,6 +21,7 @@ public class HomeFragment extends Fragment {
 
     public static HomeViewModel homeViewModel;
 
+    private View root;
     private Simulator simulator;
     private boolean isDecibelWarned, isHeartRateWarned;
 
@@ -28,7 +29,7 @@ public class HomeFragment extends Fragment {
             ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        root = inflater.inflate(R.layout.fragment_home, container, false);
 
         simulator = new Simulator(homeViewModel);
         simulator.simulate();
@@ -69,17 +70,18 @@ public class HomeFragment extends Fragment {
                         }
                     });
 
-
-        Button button = root.findViewById(R.id.therapy_home);
-        button.setOnClickListener(b -> {homeViewModel.setDecibel(homeViewModel.getDecibel().getValue() + 10);
-                                        homeViewModel.setHeartRate(homeViewModel.getHeartRate().getValue() + 10);});
         return root;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        // register listeners
+        final Button therapyButton = root.findViewById(R.id.therapy_home);
+        final Button copingButton = root.findViewById(R.id.coping_home);
+        final Button eButton = root.findViewById(R.id.contacts_home);
+        therapyButton.setOnClickListener(i -> homeViewModel.therapyRunnable.run());
+        copingButton.setOnClickListener(i -> homeViewModel.copingRunnable.run());
+        eButton.setOnClickListener(i -> homeViewModel.emergencyRunnable.run());
     }
 
 }

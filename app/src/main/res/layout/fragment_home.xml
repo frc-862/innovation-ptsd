@@ -19,7 +19,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:scaleType="fitXY"
-        android:tint="#389108"
+        android:tint="#FF7700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,12 +37,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/ic_rounded_rect_24dp"
-        android:tint="#C617D3"
+        android:tint="#195BDD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heart_rate_background_home" />
+        app:layout_constraintTop_toBottomOf="@+id/heart_rate_background_home"
+        app:srcCompat="@drawable/ic_rounded_rect_24dp" />
 
     <TextView
         android:id="@+id/text_home"

@@ -3,6 +3,8 @@ package com.frc.frcinnovationptsd;
 import android.animation.FloatEvaluator;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -47,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setLogo(R.mipmap.ic_logo_foreground);
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.ACTION_BAR_COLOR)));
+
         setContentView(com.frc.frcinnovationptsd.R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -57,10 +66,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setIcon(R.mipmap.ic_logo_foreground);
-        actionBar.setTitle("PaxZana");
     }
 
     @Override
@@ -70,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+    protected void onResume() {
+        super.onResume();
 
         DisplayMetrics displaySize = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaySize);
@@ -82,27 +87,35 @@ public class MainActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
         View copingView = inflater.inflate(R.layout.coping_heart_rate, null);
         View therapyView = inflater.inflate(R.layout.therapy, null);
+        View eView = inflater.inflate(R.layout.emergency_contact, null);
 
         PopupWindow copingPopupWindow = new PopupWindow(this);
-        PopupWindow therapyPopupWindow = new PopupWindow(this);
-
         copingPopupWindow.setHeight(height);
         copingPopupWindow.setWidth(width);
+        copingPopupWindow.setContentView(copingView);
+
+        PopupWindow therapyPopupWindow = new PopupWindow(this);
         therapyPopupWindow.setHeight(height);
         therapyPopupWindow.setWidth(width);
-        copingPopupWindow.setContentView(copingView);
         therapyPopupWindow.setContentView(therapyView);
 
-        final Button copingButton = findViewById(R.id.coping_home);
+        PopupWindow ePopupWindow = new PopupWindow(this);
+        ePopupWindow.setHeight(height);
+        ePopupWindow.setWidth(width);
+        ePopupWindow.setContentView(eView);
+
         final Button exitCopingButton = copingView.findViewById(R.id.exit_coping);
-        final Button therapyButton = findViewById(R.id.therapy_home);
+        exitCopingButton.setOnClickListener(j -> copingPopupWindow.dismiss());
         final Button exitTherapyButton = therapyView.findViewById(R.id.exit_therapy);
-
-        exitCopingButton.setOnClickListener(i -> copingPopupWindow.dismiss());
         exitTherapyButton.setOnClickListener(i -> therapyPopupWindow.dismiss());
+        final Button exitEButton = eView.findViewById(R.id.exit_e);
+        exitEButton.setOnClickListener(i -> ePopupWindow.dismiss());
 
-        copingButton.setOnClickListener(i -> copingPopupWindow.showAtLocation(copingView, Gravity.CENTER, 0, 0));
-        therapyButton.setOnClickListener(i -> therapyPopupWindow.showAtLocation(therapyView, Gravity.CENTER, 0,0));
+        homeViewModel.setPopupListener(
+                () -> copingPopupWindow.showAtLocation(copingView, Gravity.CENTER, 0, 0),
+                () -> therapyPopupWindow.showAtLocation(therapyView, Gravity.CENTER, 0,0),
+                () -> ePopupWindow.showAtLocation(eView, Gravity.CENTER, 0,0)
+        );
         // [end] pop up window
 
         // title animation

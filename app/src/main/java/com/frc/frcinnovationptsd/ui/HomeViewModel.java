@@ -19,6 +19,9 @@ public class HomeViewModel extends ViewModel {
 
     private Runnable decibelCheckRunnable;
     private Runnable heartRateCheckRunnable;
+    public Runnable copingRunnable;
+    public Runnable therapyRunnable;
+    public Runnable emergencyRunnable;
 
     private boolean hasWarnDecibel, hasWarnHeartRate;
 
@@ -37,6 +40,12 @@ public class HomeViewModel extends ViewModel {
     public void setDeviceEventListener(Runnable decibelNotification, Runnable heartRateNotification) {
         decibelCheckRunnable = decibelNotification;
         heartRateCheckRunnable = heartRateNotification;
+    }
+
+    public void setPopupListener(Runnable copingPopup, Runnable therapyPopup, Runnable emergencyPopup){
+        copingRunnable = copingPopup;
+        therapyRunnable = therapyPopup;
+        emergencyRunnable = emergencyPopup;
     }
 
     public void setDecibel(Integer currentDecibel)

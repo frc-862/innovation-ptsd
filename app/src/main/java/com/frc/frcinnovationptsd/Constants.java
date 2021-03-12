@@ -11,4 +11,6 @@ public class Constants {
     public static final int MAX_HEART_RATE = 80;
     public static final int MIN_DECIBEL = 0;
     public static final int MAX_DECIBEL = 80;
+    
+    public static String ACTION_BAR_COLOR = "#22903d";
 }
